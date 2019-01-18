@@ -25,7 +25,7 @@ class VerifyCode01(object):
         self.draw_line()
 
         im1.show()
-        im1.save("verifycode.png", "PNG")
+        im1.save("verifycode.png", "PNG")   # 需要重新确定验证码存放的位置
 
     def draw_string(self):
         font1 = ImageFont.truetype("1.ttf", size=25, encoding="utf-8")

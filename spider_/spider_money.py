@@ -1,4 +1,5 @@
 import csv
+import os
 import time
 
 from lxml import etree
@@ -48,9 +49,21 @@ def spider_data(url):
 
 
 def pipeline(data):
+    # 处理data中的起步金额
+    money = data['start_money']
+    # print(money)
+    money1 = money.split('元')[0]
+    if '万' in money:
+        money1 = int(money.split('万')[0]) * 10000
+    data['start_money'] = money1
+
     # 将数据存储到本地csv文件
+    has_header = os.path.exists('spider_money.csv')
+
     with open('spider_money.csv', 'a') as f:
         writer = csv.DictWriter(f, fieldnames=data.keys())
+        if not has_header:
+            writer.writeheader()
         writer.writerow(data)
 
     pass
