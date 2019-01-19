@@ -1,16 +1,12 @@
 import hashlib
-
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from user.models import UserInformation
 
-
-
-from user.models import User
 
 # 用户登录
 def loginView(request):
-
     if request.method == "GET":
         return render(request, 'login.html')
     elif request.method == "POST":
@@ -19,7 +15,7 @@ def loginView(request):
         md5 = hashlib.md5()
         md5.update(loginpwd.encode("utf-8"))
         loginpwd = md5.hexdigest()
-        users = User.objects.filter(username=loginname, password=loginpwd)
+        users = UserInformation.objects.filter(username=loginname, password=loginpwd)
         if users:
             user = users.first()
             request.session["user_id"] = user.id  # 登录成功后，设置session属性
