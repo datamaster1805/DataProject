@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+
+{% block base %}
+<div class="login-form">
+	<div class="close"> </div>
+		<div class="head-info">
+			<label class="lbl-1"></label>
+			<label class="lbl-2"> </label>
+			<label class="lbl-3"> </label>
+		</div>
+			<div class="clear"> </div>
+	<div class="avtar">
+
+	</div>
+    <form action="{% url 'T-user:register01' %}" method="post">
+
+				<input name="phoneNo" type="text" class="Input" placeholder="手机号" value="">
+        <div class="form-phonecode">
+            <input type="text" value="输入 6 位短信验证码" >
+            <button class="form-key">
+                发送验证码
+            </button>
+        </div>
+        <div class="signin">
+		    <input type="submit" value="下一步" >
+	    </div>
+    </form>
+
+</div>
+{% endblock base %}
+
+
+
+
+
