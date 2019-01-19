@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+欢迎来到本网站
+<table align="center">
+<caption> 精选项目 </caption>
+<tr>
+    <th> 产品代码 </th>
+    <th> 产品名称 </th>
+    <th> 起售日期 </th>
+    <th> 7日年化收益 </th>
+    <th> 起售金额 </th>
+</tr>
+{% for product in page %}
+<tr>
+<td> {{ product.p_code }} </td>
+<td> {{ product.p_name }} </td>
+<td> {{ product.start_date | date:'Y年m月d日'}} </td>
+<td> {{ product.earn_7d }} </td>
+<td> {{ product.start_date }} </td>
+
+
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

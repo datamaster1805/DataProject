@@ -76,6 +76,18 @@ h1 {
 	-moz-border-radius: 15px;
 	-o-border-radius: 15px;
 }
+.form-phonecode{
+    position: relative;
+}
+.form-phonecode .form-key{
+    position: absolute;
+    top: 55px;
+    right: 45px;
+    outline: none;
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+}
 .head img {
 	width: 100%;
 }

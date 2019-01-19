@@ -1,12 +1,8 @@
 import hashlib
-
-from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
-
-
-
 from user.models import User
+
 
 # 用户登录
 def loginView(request):
@@ -30,21 +26,28 @@ def loginView(request):
 
     request.session.flush()
     return redirect(reverse("T-user:base"))
-#用户注册
+
+
+# 用户注册
 def register01(request):
     if request.method == "GET":  # 如果是GET请求，则直接进入注册页面
         return render(request, 'register01.html', locals())
     if request.method == "POST":
         return render(request, 'register.html')
+
+
 def register(request):
     if request.method == "GET":   # 如果是GET请求，则直接进入注册页面
         return render(request,'register.html')
     if request.method == "POST":
         pass
 
+
 # 用户中心
 def homeView(request):
     return render(request, 'index.html', locals())
+
+
 # 退出登录
 def logoutView(request):
     pass

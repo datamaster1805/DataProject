@@ -18,16 +18,16 @@
     <form action="{% url 'T-user:register01' %}" method="post">
 
 				<input name="phoneNo" type="text" class="Input" placeholder="手机号" value="">
-
-				<input type="text" value="输入 6 位短信验证码" >
-
-          <div class="key">
-				<button type="button"  value="Password" class="Button CountingDownButton" border-bottom-width="15px">获取短信验证码</button>
-          </div>
+        <div class="form-phonecode">
+            <input type="text" value="输入 6 位短信验证码" >
+            <button class="form-key">
+                发送验证码
+            </button>
+        </div>
         <div class="signin">
-		<input type="submit" value="下一步" >
-	</div>
-            </form>
+		    <input type="submit" value="下一步" >
+	    </div>
+    </form>
 
 </div>
 {% endblock base %}
