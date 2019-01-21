@@ -13,6 +13,7 @@ class UserInformation(models.Model):
     usersex = models.CharField(max_length=5,choices=((1,'男'),(2,'女')))
 
 
+<<<<<<< HEAD
 #用户银行卡信息
 class BankCardInformation(models.Model):
     cardnumber =  models.IntegerField(max_length=15)
@@ -29,3 +30,8 @@ class ProductForm(models.Model):
     saleprice = models.IntegerField(max_length=10)
     pcompany = models.CharField(max_length=10)
     sericecharge = models.FloatField(max_length=10)
+=======
+    username = models.CharField(max_length=100)
+    password = models.CharField(max_length=200)
+    trackid = models.CharField(max_length=30)
+>>>>>>> 176d8f4f59da07914502d3fd3d18c9f96d3bd0b0
