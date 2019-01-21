@@ -1,7 +1,9 @@
 from django.urls import path
 
 from user import views
-app_name = 'T-user'
+
+app_name = 'user'
+
 urlpatterns = [
     # 用户中心
     path('home_page/', views.homeView, name='home_page'),

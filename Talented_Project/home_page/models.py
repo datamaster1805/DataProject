@@ -5,20 +5,19 @@ from django.db import models
 
 class Products(models.Model):
 
-    p_code = models.IntegerField(unique=True, blank=True, null=True)
-    p_name = models.TextField(blank=True, null=True)
-    start_date = models.DateTimeField(blank=True, null=True)
-    earning = models.FloatField(blank=True, null=True)
-    earn_7d = models.FloatField(blank=True, null=True)
-    earn_14d = models.FloatField(blank=True, null=True)
-    earn_28d = models.FloatField(blank=True, null=True)
-    earn_35d = models.FloatField(blank=True, null=True)
-    path_1m = models.FloatField(blank=True, null=True)
-    path_3m = models.FloatField(blank=True, null=True)
-    path_6m = models.FloatField(blank=True, null=True)
-    path_1y = models.FloatField(blank=True, null=True)
-    strat_money = models.IntegerField(blank=True, null=True)
+    p_code = models.CharField(max_length=15, blank=True, null=True)
+    p_name = models.CharField(max_length=30, blank=True, null=True)
+    start_date = models.CharField(max_length=20, blank=True, null=True)
+    earning = models.CharField(max_length=20, blank=True, null=True)
+    earn_7d = models.CharField(max_length=20, blank=True, null=True)
+    earn_14d = models.CharField(max_length=20, blank=True, null=True)
+    earn_28d = models.CharField(max_length=20, blank=True, null=True)
+    earn_35d = models.CharField(max_length=20, blank=True, null=True)
+    path_1m = models.CharField(max_length=20, blank=True, null=True)
+    path_3m = models.CharField(max_length=20, blank=True, null=True)
+    path_6m = models.CharField(max_length=20, blank=True, null=True)
+    path_1y = models.CharField(max_length=20, blank=True, null=True)
+    start_money = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'products'

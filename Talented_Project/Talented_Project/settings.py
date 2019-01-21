@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'Talented_app',
     'user',
     'home_page',
+    # 'xadmin',
+    # 'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -124,9 +126,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/user/static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'static/uploads')  # 指定上传目录，与models.ImageField(upload_to="")的upload_to共同决定上传的最终地址
+# 指定上传目录，与models.ImageField(upload_to="")的upload_to共同决定上传的最终地址
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/uploads')
