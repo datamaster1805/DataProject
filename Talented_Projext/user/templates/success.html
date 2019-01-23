@@ -1,0 +1,31 @@
+{% extends 'usermine.html' %}
+{% load static %}
+{% block linkscript%}
+{% endblock linkscript%}
+
+
+{% block base %}
+<script >
+	var sec=10;
+	function showSecond(){
+		if(sec<1){
+			url_1=location.search + "/user/mine/";
+			location.href=url_1;
+			return;
+		}
+		document.getElementById('secs').innerText=sec;
+		sec--;
+		setTimeout("showSecond()",1000);
+	}
+</script>
+
+<body onload="showSecond();" style="  ;width:380px;height:400px;;font-size:30px;text-align:center;margin:0px auto;padding-top:50px;" >
+    <div style="width: content-box;height: content-box;text-align: center;padding-top:180px; ">
+      <img style="max-width: 19%" src="../static/images/nice.png" />
+	</div>
+<div style="width:380px;height:200px;;font-size:30px;text-align:center;margin:0px auto;padding-top:16px;color:#000000">恭喜您！注册成功！<br/>将在<span id="secs" style="font-size:36px;color:red;" ></span>秒后跳转至登录页。</div>
+
+
+</body>
+
+{% endblock base %}
