@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>主页</title>
+        <link rel="stylesheet" href="{% static 'home_page/base/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'home_page/base/css/bootstrap-theme.min.css' %}">
+    <style>
+        {#body{text-align:center}#}
+        {#    导航栏样式    #}
+        a{text-decoration:none}
+        #nav_bar{height: 64px; width: 1440px; background-color: #1E1E1E; position: absolute; left:  0; top: 0;}
+        #home{width:64px ;height: 77px; color: azure; font-size: 20px; position: relative; left: 300px; top: 18px}
+        #product{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 450px; top: 18px}
+        #info{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 600px; top: 18px}
+        #mine{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 750px; top: 18px}
+        #us{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 900px; top: 18px}
+        #login{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 1050px; top: 18px}
+        {#  轮播图  #}
+        #container {width: 400px; height: 300px; overflow: hidden; left:500px; margin:0 auto; position: center; background-color: #1E1E1E}
+        #photo {width: 1200px;animation: switch 5s ease-out infinite;}
+        #photo > img {float: left;width: 400px;height: 300px;}
+        @keyframes switch {0%, 25% {margin-left: 0;}35%, 60% {margin-left: -400px;}70%, 100% {margin-left: -800px;} }
+
+    </style>
+</head>
+<body>
+{# 导航栏 #}
+<span style="height: 15px; position: relative; z-index:99999; left: 35px; top: -6px; "><img src="{% static 'home_page/images/logo.png' %}" height="60px" ></span>
+<div id="nav_bar" >
+
+    <a href="{% url 'home_page:home' %}" id="home" style="text-decoration: underline">首页</a>
+    <a href="{% url 'home_page:products' '1' %}" id="product" > 产品 </a>
+    <a href="{% url 'home_page:info' %}"  id="info" > 资讯 </a>
+    {#  我的页面刘翻写  #}
+    <a href=""   id="mine" > 我的 </a>
+    <a href="{% url 'home_page:us' %}" id="us" > 关于我们 </a>
+    {#  登录注册页面刘翻写  #}
+    <a href="{% url 'user:login' %}"  id="login" > 登录/注册 </a>
+</div>
+<br>
+<div id="container">
+    <div id="photo">
+        <img src="{% static 'home_page/images/1.jpg' %}" />
+        <img src="{% static 'home_page/images/2.jpg' %}" />
+        <img src="{% static 'home_page/images/3.jpg' %}" />
+        <img src="{% static 'home_page/images/w1.jpg' %}" />
+    </div>
+</div>
+
+
+<div style="top: 500px; align-items: center"  >
+    <a href="{% url 'home_page:products' '1' %}"><img src="{% static 'home_page/images/home_show1.png' %}" alt="" width="1440px"> </a>
+    <a href="{% url 'home_page:products' '1' %}"><img src="{% static 'home_page/images/home_show2.png' %}" alt="" width="1440px"> </a>
+    <a href="{% url 'home_page:products' '1' %}"><img src="{% static 'home_page/images/home_show3.png' %}" alt="" width="1440px"> </a>
+
+</div>
+
+
+</body>
+</html>

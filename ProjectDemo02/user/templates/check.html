@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+
+{% block base %}
+
+    <h1>手机验证</h1>
+<div class="login-form">
+	<div class="close"> </div>
+		<div class="head-info">
+			<label class="lbl-1"></label>
+			<label class="lbl-2"> </label>
+			<label class="lbl-3"> </label>
+		</div>
+			<div class="clear"> </div>
+	<div class="avtar">
+
+	</div>
+    <form action="{% url 'user:check'  %}" method="post">
+        {% csrf_token %}
+
+        <input name="phoneNo" type="text" class="Input"  placeholder="手机号" value="">
+        <div class="form-phonecode">
+            <input type="text" class="input-text-1" class="text-lo" name="t_code" value="输入 6 位短信验证码" >
+            <button class="form-key">
+                发送验证码
+            </button>
+        </div>
+        <div class="signin">
+		   <a  class="sub-3"  href="{% url "user:login" %}" >登录</a><input type="submit" class="sub-2"  value="下一步" >
+	    </div>
+    </form>
+
+</div>
+{% endblock base %}
+
+
+
+
+

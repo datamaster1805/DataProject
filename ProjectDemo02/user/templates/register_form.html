@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block linkscript%}
+{% endblock linkscript%}
+
+
+{% block base %}
+    <div>
+   			<form class="user-form" action="{% url 'user:register_form' %}" method="post">
+				{{ Userform.as_p}}
+                <br>
+                <h4>您的银行卡信息</h4>
+                {{ Bankcardform.as_p}}
+                <br>
+            <input type="submit" value="完成">
+			</form>
+    </div>
+{% endblock base %}
+
+
+
+
+

@@ -1,0 +1,69 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block linkscript%}
+{% endblock linkscript%}
+
+
+{% block base %}
+    <h1>登录</h1>
+    {{ super }}
+    <style>
+    div.head-info:hover label{
+        width: 5%;
+    }
+    div.head-info label:hover{
+          background: #f1c85f;
+          width: 60px;
+          height: 40px;
+          display: block;
+          float: right;
+          border-radius: 15px;
+          margin: 6px 6px 0px 0px;
+    }
+
+    </style>
+    <script>
+    function flab(){
+			url_1=location.search + "/user/register/";
+			location.href=url_1;
+		}
+		function mover(obj) {
+                 obj.innerHTML="<h5 style=\"color: #000000\">登录</h5>";
+
+            }
+        function mOut(obj) {
+                 obj.innerHTML=" "
+            }
+    </script>
+
+<div class="login-form">
+	<div class="close"> </div>
+		<div class="head-info" id="head-info" >
+			<label class="lbl-1" onclick="flab()" onmouseover="mover(this)" onmouseout="mOut(this)"> </label>
+			<label class="lbl-2" onclick="flab()" onmouseover="mover(this)" onmouseout="mOut(this)"> </label>
+			<label class="lbl-3" onclick="flab()" onmouseover="mover(this)" onmouseout="mOut(this)"> </label>
+		</div>
+			<div class="clear"> </div>
+	<div class="avtar">
+{#        /Users/shuoningfuvader/Desktop/Python/ProjectDemo02/user/static/images/avtar.png#}
+		<img src="../../static/user/images/avtar.png" />
+	</div>
+{#            #{% url 'T-user:mine' %}#}
+			<form action="{% url 'user:login' %}" method="post">
+                {% csrf_token %}
+					<input type="text" name="loginname" class="text-lo" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" >
+						<div class="key">
+					<input type="password" name="loginpwd" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+						</div>
+			<div class="signin">
+                <input type="submit" class="sub-1" value="登录" ><a  class="sub-2"  href="{% url "user:check" %}" >注册</a>
+	</div>
+            </form>
+
+</div>
+{% endblock base %}
+
+
+
+
+

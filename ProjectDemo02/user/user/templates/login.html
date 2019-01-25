@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block linkscript%}
+{% endblock linkscript%}
+
+
+{% block base %}
+    {{ super }}
+<div class="login-form">
+	<div class="close"> </div>
+		<div class="head-info">
+			<label class="lbl-1"> </label>
+			<label class="lbl-2"> </label>
+			<label class="lbl-3"> </label>
+		</div>
+			<div class="clear"> </div>
+	<div class="avtar">
+		<img src="../static/images/avtar.png" />
+	</div>
+			<form action="{% url 'T-user:home' %}" method="post">
+					<input type="text" name="loginname" class="text" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" >
+						<div class="key">
+					<input type="password" name="loginpwd" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+						</div>
+			<div class="signin">
+		<input type="submit" value="登录" >
+	</div>
+            </form>
+
+</div>
+{% endblock base %}
+
+
+
+
+

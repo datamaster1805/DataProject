@@ -1,0 +1,124 @@
+
+{% load static %}
+{% static "home_page/images" %}
+<!DOCTYPE html>
+
+<html>	
+<head>
+<title>Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<meta name="keywords" content="Flat Dark Web Login Form Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates" />
+<link href="../static/css/style.css" rel='stylesheet' type='text/css' />
+<!--webfonts-->
+<link href='http://fonts.useso.com/css?family=PT+Sans:400,700,400italic,700italic|Oswald:400,300,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+<script src="http://ajax.useso.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+<body>
+<script>$(document).ready(function(c) {
+	$('.close').on('click', function(c){
+		$('.login-form').fadeOut('slow', function(c){
+	  		$('.login-form').remove();
+		});
+	});	  
+});
+</script>
+ <!--SIGN UP-->
+
+{% csrf_token %}
+{% block base %}
+    <div>
+      <table align="center">
+     <caption> 已购产品 </caption>
+          <tr>
+    <th> 产品代码 </th>
+    <th> 产品名称 </th>
+    <th> 起售日期 </th>
+    <th> 7日年化收益 </th>
+    <th> 起售金额 </th>
+</tr>
+    {% for product in page %}
+         <tr>
+<td> {{ product.p_code }} </td>
+<td> {{ product.p_name }} </td>
+<td> {{ product.start_date | date:'Y年m月d日'}} </td>
+<td> {{ product.earn_7d }} </td>
+<td> {{ product.start_money }} </td>
+
+
+</tr>
+    {% endfor %}
+</table>
+    <center>
+            <a href="{% url 'user:mine_num1' 1 %}">首页</a>
+            {% if page.has_previous %}
+                <a href="{% url 'user:mine_num1' page.previous_page_number %}">上一页</a>
+                {% else %}
+                <a href="javascript:alert('已经是第一页了')">上一页</a>
+            {% endif %}
+
+            {% if page.has_next %}
+                <a href="{% url 'user:mine_num1' page.next_page_number %}">下一页</a>
+                {% else %}
+                <a href="javascript:alert('已经是最后一页了')">下一页</a>
+            {% endif %}
+            <a href="{% url 'user:mine_num1' paginator.num_pages %}">末页</a>
+
+    </center>
+</div>
+    <br>
+    <br>
+    <div>
+      <table align="center">
+     <caption> 精选推荐 </caption>
+          <tr>
+    <th> 产品代码 </th>
+    <th> 产品名称 </th>
+    <th> 起售日期 </th>
+    <th> 7日年化收益 </th>
+    <th> 起售金额 </th>
+</tr>
+    {% for product in page %}
+         <tr>
+<td> {{ product.p_code }} </td>
+<td> {{ product.p_name }} </td>
+<td> {{ product.start_date | date:'Y年m月d日'}} </td>
+<td> {{ product.earn_7d }} </td>
+<td> {{ product.start_date }} </td>
+
+
+</tr>
+    {% endfor %}
+</table>
+    >
+            <a href="{% url 'T-user:mine_num2' 1 %}">首页</a>
+            {% if page.has_previous %}
+                <a href="{% url 'T-user:mine_num2' page.previous_page_number %}">上一页</a>
+                {% else %}
+                <a href="javascript:alert('已经是第一页了')">上一页</a>
+            {% endif %}
+
+            {% if page.has_next %}
+                <a href="{% url 'T-user:mine_num2' page.next_page_number %}">下一页</a>
+                {% else %}
+                <a href="javascript:alert('已经是最后一页了')">下一页</a>
+            {% endif %}
+            <a href="{% url 'T-user:mine_num2' paginator.num_pages %}">末页</a>
+
+    </center>
+</div>
+
+
+
+
+
+{% endblock base %}
+
+{# <div class="copy-rights">#}
+{#					<p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="ģ��֮��">ģ��֮��</a> - Collect from <a href="http://www.cssmoban.com/" title="��ҳģ��" target="_blank">��ҳģ��</a></p>#}
+{#			</div>#}
+
+</body>
+</html>
