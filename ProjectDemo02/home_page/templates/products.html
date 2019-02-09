@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>主页</title>
+        <link rel="stylesheet" href="{% static 'home_page/base/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'home_page/base/css/bootstrap-theme.min.css' %}">
+
+    <style>
+        a{text-decoration:none; color: #000000}
+        #nav_bar{height: 64px; width: 1440px; background-color: #1E1E1E; position: absolute; left:  0; top: 0;}
+        #home{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 300px; top: 18px}
+        #product{width:64px ;height: 77px; color: azure; font-size: 20px; position: relative; left: 450px; top: 18px}
+        #info{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 600px; top: 18px}
+        #mine{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 750px; top: 18px}
+        #us{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 900px; top: 18px}
+        #login{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 1050px; top: 18px}
+    </style>
+</head>
+<body>
+<span style="height: 15px; position: relative; z-index:99999; left: 35px; top: -6px; "><img src="{% static 'home_page/images/logo.png' %}" height="60px" ></span>
+
+<div id="nav_bar" style="border: 1px">
+    <a href="{% url 'home_page:home' %}" id="home" >首页</a>
+    <a href="{% url 'home_page:products' '1' %}" id="product" style="text-decoration: underline"> 产品</a>
+    <a href="{% url 'home_page:info' %}"  id="info" > 资讯 </a>
+    {#  我的页面刘翻写  #}
+    <a href="{% url 'user:mine' 1 1 %}"   id="mine" > 我的 </a>
+    <a href="{% url 'home_page:us' %}" id="us" > 关于我们 </a>
+    {#  登录注册页面刘翻写  #}
+    <a href="{% url 'user:login' %}"  id="login" > 登录/注册 </a>
+</div>
+
+欢迎来到产品页面
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">所有产品</div>
+<table class="table" align="center">
+
+<tr>
+    <th> 产品代码 </th>
+    <th> 产品名称 </th>
+    <th> 起售日期 </th>
+    <th> 7日年化收益 </th>
+    <th> 起售金额 </th>
+</tr>
+
+{% for product in page %}
+<tr>
+<td> {{ product.p_code }} </td>
+<td> <a href="{%  url 'home_page:product_info' product.p_code %}"> {{ product.p_name }} </a> </td>
+<td> {{ product.start_date}} </td>
+<td> {{ product.earn_7d }} </td>
+<td> {{ product.start_date }} </td>
+</tr>
+{% endfor %}
+</table>
+</div>
+<center>
+<a href="{% url 'home_page:products' 1 %}">
+<button type="button" class="btn btn-default" aria-label="Left Align">
+  <span class="glyphicon glyphicon-align-right" aria-hidden="true"> 首页</span></button></a>
+    {% if page.has_previous %}
+<a href="{% url 'home_page:products' page.previous_page_number  %}"><button type="button" class="btn btn-default" aria-label="Left Align">
+    <span class="glyphicon glyphicon-align-left" aria-hidden="true"> 上页</span></button></a>
+    {% else %}
+        <a href="javascript:alert('没上一页了')"> <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-align-left" aria-hidden="true"> 上页 </span></button></a>
+    {% endif %}
+    {% if page.has_next %}
+<a href="{% url 'home_page:products' page.next_page_number %}">
+    <button type="button" class="btn btn-default" aria-label="Left Align">
+        下页 <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span></button></a>
+    {% else %}
+        <a href="javascript:alert('没下一页了')"><button type="button" class="btn btn-default" aria-label="Left Align">
+        下页 <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span></button></a>
+    {% endif %}
+<a href="{% url 'home_page:products' paginator.num_pages %}"><button type="button" class="btn btn-default" aria-label="Left Align">
+    末页 <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></button></a>
+{#<hr>#}
+<br>
+{#{{ page }}#}
+</center>
+</body>
+</html>

@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>information</title>
+    <style>
+        p{text-align: justify-all}
+        select{width: 166px;height: 21.33px}
+        #id_u_idcard{width: 150px}
+        #id_u_email{width: 120px}
+        #id_u_sex{width: 170px}
+        #id_u_age{width: 150px}
+        #id_c_number{width: 198px}
+        #id_c_bank{width: 168px}
+        h4{text-align: center}
+    </style>
+
+</head>
+<body style="text-align:center">
+
+
+    <div style="width: 300px ;height: 300px; margin:0 auto;text-align: justify-all">
+   			<form class="user-form" action="{% url 'user:register_form' %}" method="post">
+                 {% csrf_token %}
+				<h4>您的个人信息</h4>
+               {{ Userform.as_p}}
+                <p id="demo1" style="color: red"></p>
+                <p id="demo" style="color: red"></p>
+                <br>
+                <h4>您的银行卡信息</h4>
+                {{ Bankcardform.as_p}}
+                <br>
+                <div style="text-align: center">
+            <input type="submit" value="完成">&nbsp;&nbsp;<a  class="sub-2"  href="{% url "user:success" %}" >跳过</a>
+                    </div>
+			</form>
+    </div>
+
+   <script type="text/javascript">
+    document.getElementById("id_u_email").onchange=function () {
+        var myid = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/;
+     var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
+     var obj = document.getElementById("id_u_email"); //要验证的对象
+     if(!reg.test(obj.value)){ //正则验证不通过，格式不对
+        document.getElementById("demo").innerHTML = "你输入的邮箱有误"
+        return false;
+     }else {
+         document.getElementById("demo").innerHTML = ""
+        return false;
+     }
+
+     }
+    document.getElementById("id_u_idcard").onchange=function () {
+        var myid = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/;
+
+     var obj = document.getElementById("id_u_idcard"); //要验证的对象
+     if(!myid.test(obj.value)){ //正则验证不通过，格式不对
+        document.getElementById("demo1").innerHTML = "你输入的身份证号码有误"
+        return false;
+     }else {
+         document.getElementById("demo1").innerHTML = ""
+        return false;
+     }
+
+     }
+
+    </script>
+</body>
+</html>
+
+
+
+
+

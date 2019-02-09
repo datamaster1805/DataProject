@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>关于我们</title>
+    <style>
+        a{text-decoration:none}
+        #nav_bar{height: 64px; width: 1440px; background-color: #1E1E1E; position: absolute; left:  0; top: 0;}
+        #home{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 300px; top: 18px}
+        #product{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 450px; top: 18px}
+        #info{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 600px; top: 18px}
+        #mine{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 750px; top: 18px}
+        #us{width:64px ;height: 77px; color: azure; font-size: 20px; position: relative; left: 900px; top: 18px}
+        #login{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 1050px; top: 18px}
+    </style>
+</head>
+<body>
+<span style="height: 15px; position: relative; z-index:99999; left: 35px; top: -6px; "><img src="{% static 'home_page/images/logo.png' %}" height="60px" ></span>
+
+<div id="nav_bar" >
+    <a href="{% url 'home_page:home' %}" id="home" >首页</a>
+    <a href="{% url 'home_page:products' '1' %}" id="product" > 产品</a>
+    <a href="{% url 'home_page:info' %}"  id="info" > 资讯 </a>
+    {#  我的页面刘翻写  #}
+    <a href="{% url 'user:mine' 1 1 %}"   id="mine" > 我的 </a>
+    <a href="{% url 'home_page:us' %}" id="us" style="text-decoration: underline"> 关于我们</a>
+    {#  登录注册页面刘翻写  #}
+    <a href="{% url 'user:login' %}"  id="login" > 登录/注册 </a>
+</div>
+
+</body>
+</html>

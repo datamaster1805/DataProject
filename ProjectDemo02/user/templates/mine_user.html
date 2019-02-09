@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>主页</title>
+        <link rel="stylesheet" href="{% static 'home_page/base/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'home_page/base/css/bootstrap-theme.min.css' %}">
+
+    <style>
+        a{text-decoration:none; color: #000000}
+        #nav_bar{height: 64px; width: 1440px; background-color: #1E1E1E; position: absolute; left:  0; top: 0;}
+        #home{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 300px; top: 18px}
+        #product{width:64px ;height: 77px; color: azure; font-size: 20px; position: relative; left: 450px; top: 18px}
+        #info{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 600px; top: 18px}
+        #mine{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 750px; top: 18px}
+        #us{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 900px; top: 18px}
+        #login{width:64px ;height: 77px; color: #9199aa; font-size: 20px; position: relative; left: 1050px; top: 18px}
+    </style>
+</head>
+<body>
+<span style="height: 15px; position: relative; z-index:99999; left: 35px; top: -6px; "><img src="{% static 'home_page/images/logo.png' %}" height="60px" ></span>
+
+<div id="nav_bar" style="border: 1px">
+    <a href="{% url 'home_page:home' %}" id="home" >首页</a>
+    <a href="{% url 'home_page:products' '1' %}" id="product" style="text-decoration: underline"> 产品</a>
+    <a href="{% url 'home_page:info' %}"  id="info" > 资讯 </a>
+    {#  我的页面刘翻写  #}
+    <a href="{% url 'user:logout' %}"   id="mine" > 退出登录 </a>
+    <a href="{% url 'home_page:us' %}" id="us" > 关于我们 </a>
+    {#  登录注册页面刘翻写  #}
+    <a href="{% url 'user:login' %}"  id="login" > 登录/注册 </a>
+</div>
+
+欢迎来到产品页面
+<div style="width: 200px;height: 220px;margin: 27px 30px 27px 30px;background-color: #c8e5bc">
+    <div style="width: 100px;height: 100px;margin: 27px 30px 27px 30px">
+        <img style="width: 100%" src="../../static/user/images/avtar.png">
+    </div>
+    <div style="width: 200px;height: 100px;line-height: 30px">
+        <ul>
+        <li>昵称：{{ user.username }}</li>
+        <li>电话：{{user.telephone}}</li>
+        </ul>
+    </div>
+</div>  {# 我的信息 #}
+
+
+<div>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">已购产品</div>
+<table class="table" align="center">
+
+<tr>
+    <th> 产品代码 </th>
+
+    <th> 购买日期 </th>
+    <th> 年化收益 </th>
+    <th> 到期日期 </th>
+</tr>
+
+{% for product in page %}
+<tr>
+<td> <a href="{%  url 'home_page:product_info' product.p_code %}"> {{ product.p_code }} </a> </td>
+<td> {{ product.start_data}} </td>
+<td> {{ product.moeny}} </td>
+<td> {{ product.end_data }} </td>
+</tr>
+{% endfor %}
+</table>
+</div>
+<center>
+<a href="{% url 'user:mine' 1 1%}">
+<button type="button" class="btn btn-default" aria-label="Left Align">
+  <span class="glyphicon glyphicon-align-right" aria-hidden="true"> 首页</span></button></a>
+    {% if page.has_previous %}
+<a href="{% url 'user:mine' page.previous_page_number 1 %}"><button type="button" class="btn btn-default" aria-label="Left Align">
+    <span class="glyphicon glyphicon-align-left" aria-hidden="true"> 上页</span></button></a>
+    {% else %}
+        <a href="javascript:alert('没上一页了')"> <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-align-left" aria-hidden="true"> 上页 </span></button></a>
+    {% endif %}
+    {% if page.has_next %}
+<a href="{% url 'user:mine' page.next_page_number 1 %}">
+    <button type="button" class="btn btn-default" aria-label="Left Align">
+        下页 <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span></button></a>
+    {% else %}
+        <a href="javascript:alert('没下一页了')"><button type="button" class="btn btn-default" aria-label="Left Align">
+        下页 <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span></button></a>
+    {% endif %}
+<a href="{% url 'user:mine' paginator.num_pages 1 %}"><button type="button" class="btn btn-default" aria-label="Left Align">
+    末页 <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></button></a>
+{#<hr>#}
+<br>
+{#{{ page }}#}
+</center>
+</div>{# 已购产品 #}
+
+
+<div>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">推荐产品</div>
+<table class="table" align="center">
+
+<tr>
+    <th> 产品代码 </th>
+    <th> 产品名称 </th>
+    <th> 购买日期 </th>
+    <th> 年化收益 </th>
+    <th> 到期日期 </th>
+</tr>
+
+{% for product in page1 %}
+<tr>
+<td> {{ product.p_code }} </td>
+<td> <a href="{%  url 'home_page:product_info' product.p_code %}"> {{ product.p_name }} </a> </td>
+<td> {{ product.start_date}} </td>
+<td> {{ product.earn_7d }} </td>
+<td> {{ product.start_date }} </td>
+</tr>
+{% endfor %}
+</table>
+</div>
+<center>
+<a href="{% url 'user:mine' 1 1 %}">
+<button type="button" class="btn btn-default" aria-label="Left Align">
+  <span class="glyphicon glyphicon-align-right" aria-hidden="true"> 首页</span></button></a>
+    {% if page1.has_previous %}
+<a href="{% url 'user:mine' 1 page1.previous_page_number  %}"><button type="button" class="btn btn-default" aria-label="Left Align">
+    <span class="glyphicon glyphicon-align-left" aria-hidden="true"> 上页</span></button></a>
+    {% else %}
+        <a href="javascript:alert('没上一页了')"> <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-align-left" aria-hidden="true"> 上页 </span></button></a>
+    {% endif %}
+    {% if page1.has_next %}
+<a href="{% url 'user:mine' 1 page1.next_page_number %}">
+    <button type="button" class="btn btn-default" aria-label="Left Align">
+        下页 <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span></button></a>
+    {% else %}
+        <a href="javascript:alert('没下一页了')"><button type="button" class="btn btn-default" aria-label="Left Align">
+        下页 <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span></button></a>
+    {% endif %}
+<a href="{% url 'user:mine' 1 paginator.num_pages %}"><button type="button" class="btn btn-default" aria-label="Left Align">
+    末页 <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></button></a>
+{#<hr>#}
+<br>
+{#{{ page }}#}
+</center>
+</div>{# 推荐产品 #}
+
+
+
+</body>
+</html>

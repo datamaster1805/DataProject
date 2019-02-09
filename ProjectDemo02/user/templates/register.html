@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{#{% load static %}#}
+{% block linkscript%}
+{% endblock linkscript%}
+
+
+{% block base %}
+    <h1>注册</h1>
+
+<div class="login-form">
+	<div class="close"> </div>
+		<div class="head-info">
+			<label class="lbl-1"> </label>
+			<label class="lbl-2"> </label>
+			<label class="lbl-3"> </label>
+		</div>
+			<div class="clear"> </div>
+	<div class="avtar">
+{#        "../../static/user/images/aaa.png"#}
+		<img src="../../static/user/images/avtar.png" />
+	</div>
+{#			<form action="{% url 'user:register' telephone %}" method="post">#}
+            <form action="{% url 'user:register'  %}" method="post">
+                {% csrf_token %}
+					<input type="text" class="text-lo" name="r_name" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" >
+						<div class="key">
+					<input type="password" class="text-lo" value="Password" name="r_pwd" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+						</div>
+
+	<div class="signin">
+	    <a  class="sub-3"  href="{% url "user:login" %}" >登录</a><input type="submit"  class="sub-2" value="注册" >
+	</div>
+                </form>
+</div>
+{% endblock base %}
+
+
+
+
+
